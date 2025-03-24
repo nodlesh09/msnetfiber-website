@@ -2,123 +2,251 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MSNet Fiber - Internet Plans</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    /* GLOBAL STYLES */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #333;
       margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #005bac;
+      font-family: 'Inter', sans-serif;
+      background: url('backgroundimage.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
-      padding: 20px;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    header, .section, .card, .features, .testimonials {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      padding: 80px 20px;
       text-align: center;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
     }
-    h1 {
+
+    header h1 {
       margin: 0;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
     }
-    .plans {
-      max-width: 800px;
-      margin: 30px auto;
+
+    header p {
+      margin-top: 12px;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #e0e0e0;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 60px auto;
       padding: 0 20px;
     }
-    .plan {
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: #0d6efd;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin-bottom: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      padding: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #333;
     }
-    .plan h2 {
-      color: #005bac;
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     }
+
+    .card h3 {
+      font-size: 1.6rem;
+      margin-top: 0;
+    }
+
+    .card p {
+      font-size: 1rem;
+      margin: 10px 0 20px;
+    }
+
     .apply-btn {
       display: inline-block;
-      background: #28a745;
+      background: #198754;
       color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 10px;
-    }
-    .details {
-      margin-top: 10px;
-    }
-    .features {
-      background: #eef4ff;
-      padding: 20px;
+      padding: 12px 20px;
+      font-weight: 600;
       border-radius: 10px;
-      margin-top: 30px;
+      text-decoration: none;
+      transition: background 0.3s;
     }
-    .qr-code {
-      text-align: center;
-      margin: 40px auto;
+
+    .apply-btn:hover {
+      background: #157347;
     }
-    .qr-code img {
-      width: 200px;
+
+    .features {
+      background: #fff;
+      color: #333;
+      border-radius: 20px;
+      padding: 40px;
+      margin-top: 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     }
-    /* Messenger floating button */
+
+    .features ul {
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+
+    .features li {
+      font-size: 1rem;
+    }
+
+    .testimonials .card p {
+      font-size: 1rem;
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .testimonials .card h4 {
+      font-size: 1rem;
+      color: #0d6efd;
+      margin: 0;
+      font-weight: 600;
+    }
+
     .messenger-button {
       position: fixed;
       bottom: 20px;
       right: 20px;
       background: #0084ff;
       color: white;
-      padding: 15px 20px;
+      padding: 16px;
       border-radius: 50%;
-      font-size: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       text-decoration: none;
       z-index: 100;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .card h3 {
+        font-size: 1.4rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>MSNet Fiber Internet Plans</h1>
-  <p>Best for Personal Use & Business (Pisowifi, Pesonet, Computer Shops)</p>
-</header>
+  <header>
+    <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+      <img src="msnetfiberlogo.png" alt="MSNet Fiber Company Logo" style="height: 70px; margin-bottom: 10px;" />
+      <h1>MSNet Fiber</h1>
+      <p>Reliable & Affordable Internet Plans for Everyone</p>
+    </div>
+  </header>
 
-<div class="plans">
-  <div class="plan">
+  <main class="section">
     <h2>Best for Personal Use</h2>
-    <p><strong>P599/month</strong> – up to 5Mbps (2–3 devices)</p>
-    <p><strong>P999/month</strong> – up to 15Mbps (4–6 devices)</p>
-    <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfngRrGUwkdUtd4RXKUUTypLMkYlUhtQHmBRkz08p1trFrDmw/viewform" target="_blank">Apply Now</a>
-  </div>
+    <div class="cards">
+      <div class="card">
+        <h3>P599/month</h3>
+        <p>Up to 5Mbps (2–3 devices)</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfngRrGUwkdUtd4RXKUUTypLMkYlUhtQHmBRkz08p1trFrDmw/viewform" class="apply-btn" target="_blank" rel="noopener">Apply Now</a>
+      </div>
+      <div class="card">
+        <h3>P999/month</h3>
+        <p>Up to 15Mbps (4–6 devices)</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfngRrGUwkdUtd4RXKUUTypLMkYlUhtQHmBRkz08p1trFrDmw/viewform" class="apply-btn" target="_blank" rel="noopener">Apply Now</a>
+      </div>
+    </div>
 
-  <div class="plan">
-    <h2>Best for Pisowifi / Business</h2>
-    <p><strong>P1499/month</strong> – up to 25Mbps (7–10 devices)</p>
-    <p><strong>P1899/month</strong> – up to 45Mbps (11–15 devices)</p>
-    <p><strong>P2199/month</strong> – up to 65Mbps (16–20 devices)</p>
-    <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfngRrGUwkdUtd4RXKUUTypLMkYlUhtQHmBRkz08p1trFrDmw/viewform" target="_blank">Apply Now</a>
-  </div>
+    <h2 style="margin-top: 60px;">Best for Business (Pisowifi, Pesonet, etc.)</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>P1499/month</h3>
+        <p>Up to 25Mbps (7–10 devices)</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfngRrGUwkdUtd4RXKUUTypLMkYlUhtQHmBRkz08p1trFrDmw/viewform" class="apply-btn" target="_blank" rel="noopener">Apply Now</a>
+      </div>
+      <div class="card">
+        <h3>P1899/month</h3>
+        <p>Up to 45Mbps (11–15 devices)</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfngRrGUwkdUtd4RXKUUTypLMkYlUhtQHmBRkz08p1trFrDmw/viewform" class="apply-btn" target="_blank" rel="noopener">Apply Now</a>
+      </div>
+      <div class="card">
+        <h3>P2199/month</h3>
+        <p>Up to 65Mbps (16–20 devices)</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfngRrGUwkdUtd4RXKUUTypLMkYlUhtQHmBRkz08p1trFrDmw/viewform" class="apply-btn" target="_blank" rel="noopener">Apply Now</a>
+      </div>
+    </div>
 
-  <div class="features">
-    <h3>Installation & Inclusions</h3>
-    <ul>
-      <li>Installation: P1500</li>
-      <li>Free modem</li>
-      <li>Free 300 meters of wire (P5/meter for excess)</li>
-      <li>✓ Unlimited Internet (No Data Capping)</li>
-      <li>✓ No Hidden Charges</li>
-      <li>✓ No lock-in period — disconnect anytime</li>
-    </ul>
-  </div>
+    <div class="features">
+      <h2>Installation & Inclusions</h2>
+      <ul>
+        <li>Installation Fee: P1500</li>
+        <li>Free modem</li>
+        <li>Free 300 meters of wire (P5/meter excess)</li>
+        <li>✓ Unlimited Internet (No Data Capping)</li>
+        <li>✓ No Hidden Charges</li>
+        <li>✓ No lock-in period — disconnect anytime</li>
+      </ul>
+    </div>
+  </main>
 
-  <div class="qr-code">
-    <h3>Scan to Message Us on Facebook</h3>
-    <img src="qr-code.png" alt="QR Code to Messenger"/>
-  </div>
-</div>
+  <section class="section testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="cards">
+      <div class="card">
+        <p>"Super reliable connection! Perfect for my small business."</p>
+        <h4>- Rollan B.</h4>
+      </div>
+      <div class="card">
+        <p>"Installation was quick and customer service is excellent."</p>
+        <h4>- Jade B.</h4>
+      </div>
+      <div class="card">
+        <p>"I've been using MSNet Fiber for over a year — never had an issue!"</p>
+        <h4>- Gemmar G.</h4>
+      </div>
+    </div>
+  </section>
 
-<a class="messenger-button" href="https://www.facebook.com/messages/e2ee/t/7407306506045306" target="_blank">💬</a>
+  <a href="https://www.facebook.com/messages/e2ee/t/7407306506045306" class="messenger-button" target="_blank" rel="noopener" title="Message us on Facebook">💬</a>
 
 </body>
 </html>
